@@ -1,0 +1,69 @@
+{
+	"TemplateName": "Professional Details",
+	"Sections": [
+		{
+			"SectionName": "Demographic Section",
+			"Questions": [
+				{
+					"QuestionText": "How much Experience you have ?",
+					"Id": "Experience",
+					"ResponseType": "text",
+					"Options": ["1-3 Years", "3-6 Years", "6-10 Years", "10-15 Years", "15+ Years"]
+				},
+				{
+					"QuestionText": "Notice Period Left ?",
+					"Id": "NoticePeriod",
+					"ResponseType": "number",
+					"Options": ["15 Days", "1 Month", "2 Month", "3 Month"]
+				},
+				{
+					"QuestionText": "Ready for Relocation",
+					"Id": "Relocation",
+					"ResponseType": "options",
+					"Options": ["Yes", "No"]
+				}
+			]
+		},
+		{
+			"SectionName": "Survey Section",
+			"Questions": [
+				{
+					"QuestionText": "Rate the candidate in OOPs",
+					"Id": "OOPs",
+					"ResponseType": "options",
+					"Options": [
+						"1",
+						"2",
+						"3",
+						"4",
+						"5"
+					]
+				},
+				{
+					"QuestionText": "Rate the candidate in Data Structure",
+					"Id": "OOPs",
+					"ResponseType": "options",
+					"Options": [
+						"1",
+						"2",
+						"3",
+						"4",
+						"5"
+					]
+				},
+				{
+					"QuestionText": "Rate the candidate in Database",
+					"Id": "OOPs",
+					"ResponseType": "options",
+					"Options": [
+						"1",
+						"2",
+						"3",
+						"4",
+						"5"
+					]
+				}
+			]
+		}
+	]
+}

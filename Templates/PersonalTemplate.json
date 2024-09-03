@@ -1,0 +1,72 @@
+{
+	"TemplateName": "Interview Template",
+	"Sections": [
+		{
+			"SectionName": "Demographic Section",
+			"Questions": [
+				{
+					"QuestionText": "What is your Name ?",
+					"Id": "Name",
+					"ResponseType": "text"
+				},
+				{
+					"QuestionText": "What is your Age ?",
+					"Id": "Age",
+					"ResponseType": "number"
+				},
+				{
+					"QuestionText": "What is your current location ?",
+					"Id": "CurrentLocation",
+					"ResponseType": "options",
+					"Options": [
+						"Pune",
+						"Mumbai",
+						"Banglore",
+						"Other"
+					]
+				}
+			]
+		},
+		{
+			"SectionName": "Survey Section",
+			"Questions": [
+				{
+					"QuestionText": "Rate the candidate in OOPs",
+					"Id": "OOPs",
+					"ResponseType": "options",
+					"Options": [
+						"1",
+						"2",
+						"3",
+						"4",
+						"5"
+					]
+				},
+				{
+					"QuestionText": "Rate the candidate in Data Structure",
+					"Id": "Data Structure",
+					"ResponseType": "options",
+					"Options": [
+						"1",
+						"2",
+						"3",
+						"4",
+						"5"
+					]
+				},
+				{
+					"QuestionText": "Rate the candidate in Database",
+					"Id": "Database",
+					"ResponseType": "options",
+					"Options": [
+						"1",
+						"2",
+						"3",
+						"4",
+						"5"
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,123 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "id": "package",
+      "type": "promptString",
+      "description": "package name"
+    }
+  ],
+  "tasks": [
+    //package task
+    {
+      "label": "package",
+      "type": "shell",
+      "command": "${workspaceFolder}/conda/.venv/Scripts/pyinstaller",
+      "args": [
+        "--onefile",
+        "--add-data",
+        ".venv/Lib/site-packages/selenium_stealth/js/*.*:selenium_stealth/js",
+        "Main.py"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "Build and package the project as exe"
+    },
+
+    //Create venv using python
+    {
+      "label": "Create venv using python",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "-m",
+        "venv",
+        "${config:pyPath}"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "detail": "Create a virtual environment"
+    },
+
+    //Create venv using conda
+    {
+      "label": "Create Conda venv",
+      "type": "shell",
+      "command": "conda",
+      "args": [
+        "create",
+        "--prefix",
+        "${config:pyPath}",
+        "python=3.12.3",  // Replace with the desired Python version
+        "-y"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "Create a Miniconda virtual environment in the .venv folder"
+    },
+
+    //install dependencies
+    {
+      "label": "Install dependencies",
+      "type": "shell",
+      "command": "${config:pyPath}/python",
+      "args": [  
+        "-m",      
+        "pip",
+        "install",
+        "-r",
+        "requirements.txt",   
+        "--index-url",
+        "${config:indexUrl}",
+        "--trusted-host",
+        "${config:trustedHost}"     
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "detail": "Install dependencies"
+    },
+    
+    //Install and Uninstall package
+    {
+      "label": "Install pacakge",
+      "type": "shell",
+      "command": "${config:pyPath}/python -m pip install ${input:package} --index-url ${config:indexUrl}",      
+      "detail": "Install new package",
+      "problemMatcher": []
+    },
+    {
+      "label": "Uninstall pacakge",
+      "type": "shell",
+      "command": "${config:pyPath}/python -m pip uninstall -y ${input:package}",      
+      "detail": "Uninstall package",
+      "problemMatcher": []
+    },
+    {
+      "label": "Install Package and update requirements.txt",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+          "-Command",
+          "(Get-Content -Path ./requirements.txt) +\"$((${config:pyPath}/python -m pip freeze | Select-String -Pattern '${input:package}').ToString().Trim())\" | Set-Content -Path ./requirements.txt -Encoding utf8"
+      ],
+      "dependsOn": "Install pacakge",
+      "detail": "Install package and update requirements.txt",  
+      "dependsOrder": "sequence",    
+      "problemMatcher": [] 
+    }
+  ]
+}
